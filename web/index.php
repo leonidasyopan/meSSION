@@ -26,10 +26,10 @@ session_start();
                 <input type="text" name="query" placeholder="Search information...">
                 <select name="typeOfQuery">
                     <option value="">Select Filter</option>
-                    <option value="firstName">First Name</option>
-                    <option value="lastName">Last Name</option>
-                    <option value="missionaryTitle">Missionary Title</option>
-                    <option value="churchUnit">Ward/Branch</option>
+                    <option value="first_name">First Name</option>
+                    <option value="last_name">Last Name</option>
+                    <option value="missionary_title">Missionary Title</option>
+                    <option value="unit_name">Ward/Branch</option>
                 </select>
                 <input type="submit" name="submit" value="Find">
             </form>
@@ -41,8 +41,8 @@ session_start();
                     $query = htmlspecialchars($_POST['query']);
                     $typeOfQuery = htmlspecialchars($_POST['typeOfQuery']);
 
-                    if($typeOfQuery == "" || ($typeOfQuery != "firstName" && $typeOfQuery != "lastName" && $typeOfQuery != "missionaryTitle" && $typeOfQuery != "churchUnit")) {
-                        $typeOfQuery = "firstName";
+                    if($typeOfQuery == "" || ($typeOfQuery != "first_name" && $typeOfQuery != "last_name" && $typeOfQuery != "missionary_title" && $typeOfQuery != "unit_name")) {
+                        $typeOfQuery = "first_name";
                     }
 
                     foreach ($db->query("SELECT
@@ -56,7 +56,7 @@ session_start();
                 INNER JOIN public.missionary_timeline mt ON us.user_id = mt.user_id
                 INNER JOIN public.unit un ON un.unit_id = mt.unit_id
                 INNER JOIN public.missionary_service ms ON us.user_id = ms.user_id
-                    WHERE un.unit_name = 'Ramo Oswaldo Cruz'") as $row) {
+                    WHERE $typeOfQuery LIKE '%$query%'") as $row) {
                         echo 'Fullname: ' . $row['full_name'] . '<br>';
                         echo 'Missionary Name: ' . $row['missionary_name'] . '<br>';
                         echo 'Ward/Branch: ' . $row['ward_or_branch'] .  '<br>';
