@@ -1,3 +1,6 @@
+<?php 
+    require "connection/connect.php"; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +11,16 @@
 </head>
 <body>
     
-    <h1>Just testing it</h1>
+    <?php
+
+        foreach ($db->query('SELECT username, password FROM users') as $row)
+        {
+            echo 'user: ' . $row['username'];
+            echo ' password: ' . $row['password'];
+            echo '<br/>';
+        }
+
+    ?>
 
 </body>
 </html>
