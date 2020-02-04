@@ -1,25 +1,16 @@
 <?php
-    try
-    {
-        $dbUrl = getenv('DATABASE_URL');
 
-        $dbOpts = parse_url($dbUrl);
+$dbUrl = getenv('DATABASE_URL');
 
-        $dbHost = $dbOpts["host"];
-        $dbPort = $dbOpts["port"];
-        $dbUser = $dbOpts["user"];
-        $dbPassword = $dbOpts["pass"];
-        $dbName = ltrim($dbOpts["path"],'/');
+$dbopts = parse_url($dbUrl);
 
-        $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
+$dbHost = $dbopts["host"];
+$dbPort = $dbopts["port"];
+$dbUser = $dbopts["user"];
+$dbPassword = $dbopts["pass"];
+$dbName = ltrim($dbopts["path"],'/');
 
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
-    catch (PDOException $ex)
-    {
-        echo 'Error!: ' . $ex->getMessage();
-        die();
-}
+$db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
 /*
     $dbUrl = exec("heroku config:get DATABASE_URL");
 
