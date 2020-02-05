@@ -50,16 +50,26 @@ session_start();
                     ms.missionary_title AS missionary_name,
                     mt.companion_name AS companion,
                     un.unit_name AS ward_or_branch,
-                    un.stake_name AS stake
+                    un.stake_name AS stake,
+                    mt.transfer_start,
+                    mt.transfer_end
                 FROM
                     public.users us
                 INNER JOIN public.missionary_timeline mt ON us.user_id = mt.user_id
                 INNER JOIN public.unit un ON un.unit_id = mt.unit_id
                 INNER JOIN public.missionary_service ms ON us.user_id = ms.user_id
                     WHERE $typeOfQuery LIKE '%$query%'") as $row) {
-                        echo 'Fullname: ' . $row['full_name'] . '<br>';
-                        echo 'Missionary Name: ' . $row['missionary_name'] . '<br>';
-                        echo 'Ward/Branch: ' . $row['ward_or_branch'] .  '<br>';
+                        echo '<div class="missionary-information-div">';
+                        echo '<h3>' . $row['ward_or_branch'] . '</h3>';
+                        echo '<h4>' . $row['ward_or_branch'] . '</h4>';
+
+                        echo '<p>Fullname: ' . $row['full_name'] . '</p>';
+                        echo '<p>Missionary Name: ' . $row['missionary_name'] . '</p>';
+                        echo '<p>Ward/Branch: ' . $row['ward_or_branch'] .  '<p>';
+                        echo '<p>Period: from ' . $row['transfer_start'] . ' to ' . $row['transfer_end']  . '<p>';
+
+
+                        echo '</div>';
                     }
 
                 }
