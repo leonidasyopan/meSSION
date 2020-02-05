@@ -48,6 +48,7 @@ session_start();
                     foreach ($db->query("SELECT
                     us.first_name || ' ' || us.last_name AS full_name,
                     ms.missionary_title AS missionary_name,
+                    ms.mission_local,
                     mt.companion_name AS companion,
                     un.unit_name AS ward_or_branch,
                     un.stake_name AS stake,
@@ -61,12 +62,12 @@ session_start();
                     WHERE $typeOfQuery LIKE '%$query%'") as $row) {
                         echo '<div class="missionary-information-div">';
                         echo '<h3>' . $row['ward_or_branch'] . '</h3>';
-                        echo '<h4>' . $row['ward_or_branch'] . '</h4>';
+                        echo '<h4>' . $row['mission_local'] . '</h4>';
 
-                        echo '<p>Fullname: ' . $row['full_name'] . '</p>';
-                        echo '<p>Missionary Name: ' . $row['missionary_name'] . '</p>';
-                        echo '<p>Ward/Branch: ' . $row['ward_or_branch'] .  '<p>';
-                        echo '<p>Period: from ' . $row['transfer_start'] . ' to ' . $row['transfer_end']  . '<p>';
+                        echo '<p><span>Fullname:</span> ' . $row['full_name'] . '</p>';
+                        echo '<p><span>Missionary Name:</span> ' . $row['missionary_name'] . '</p>';
+                        echo '<p><span>Companion:</span> ' . $row['companion'] .  '<p>';
+                        echo '<p><span>Period:</span> from ' . $row['transfer_start'] . ' to ' . $row['transfer_end']  . '<p>';
 
 
                         echo '</div>';

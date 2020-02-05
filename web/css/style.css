@@ -143,6 +143,7 @@ main section {
 
 .search-box {
     width: 100%;
+    margin: 50px 0;
 }
 
 .search-box form {
@@ -180,6 +181,22 @@ main section {
     font-size: 1.2em;    
 }
 
+.missionary-information-div:nth-of-type(1) {
+    margin-top: 50px;
+}
+
+.missionary-information-div {
+    margin: 30px 0;
+    line-height: 1.5em;
+}
+
+.missionary-information-div h4 {
+    margin-bottom: 10px;
+}
+
+.missionary-information-div span {
+    font-weight: bold;
+}
 
 /*  
 // MEDIUM SCREENS - MEDIA QUERY BREAK
