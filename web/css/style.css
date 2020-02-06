@@ -35,7 +35,11 @@ h2 {
 /* HEADER */
 header {
     font-size: 1.2em;    
-    background: #0D64AB;
+    background: #0D64AB;    
+}
+
+header nav {
+    padding: 0 10px;
 }
 
 header nav a {
@@ -67,8 +71,11 @@ header nav ul {
 #main-navigation ul{
     float: right;     
     display: flex;
-    width: 30%;
     justify-content: space-between;
+}
+
+#main-navigation ul li{
+    margin: 0 0 0 5px;
 }
 
 #logo-ul-holder {
@@ -78,12 +85,11 @@ header nav ul {
 
 #logo {
     font-family: Helvetica, sans-serif;
-    font-size: 3em;
+    font-size: 1.5em;
     color: rgb(255, 255, 255);
 }
 
-#logo span {
-    
+#logo span {    
     font-weight: bold;
     font-style: italic;
 }
@@ -132,7 +138,8 @@ footer a:hover {
 
 main {
     background-color: #ffffff;
-    min-height: 80vh;    
+    min-height: 80vh;  
+    
 }
 
 main section {
@@ -142,20 +149,19 @@ main section {
 /* SEARCH BOX */
 
 .search-box {
-    width: 100%;
-    margin: 50px 0;
+    margin: 20px 0;
 }
 
 .search-box form {
     font-size: 1.2em;
-    width: 100%;    
+    width: 90%;    
     display: flex;
-    justify-content: space-between;   
-    align-items: flex-end;
+    flex-direction: column;
+    margin: 0 10px;
 }
 
 .search-box form input[type="text"] {
-    width: 60%;
+    margin-bottom: 20px;
     height: 50px;
     padding: 12px 20px;
     border: 1px solid #ccc;
@@ -164,7 +170,7 @@ main section {
 }
 
 .search-box form select {
-    width: 20%;
+    margin-bottom: 20px;
     height: 50px;
     padding: 0 20px;
     border: 1px solid #ccc;
@@ -173,7 +179,7 @@ main section {
 }
 
 .search-box form input[type="submit"] {
-    width: 15%;    
+    margin-bottom: 20px;
     height: 50px;    
     border-radius: 4px;
     background-color: #2D9CF7;
@@ -203,7 +209,36 @@ main section {
 */
 @media (min-width:600px) {
 
+    #logo {
+        font-size: 3em
+    }
+
+    #main-navigation ul{
+        width: 30%;
+    }
+
+    .search-box {
+        margin: 50px 0;
+    }
+
+    .search-box form {
+        width: 100%;
+        flex-direction: row;        
+        justify-content: space-between;   
+        align-items: flex-end;
+    }
     
+    .search-box form input[type="text"] {
+        width: 60%;
+    }
+    
+    .search-box form select {
+        width: 20%;
+    }
+    
+    .search-box form input[type="submit"] {
+        width: 15%;  
+    }
 
 }
 
