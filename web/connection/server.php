@@ -54,8 +54,8 @@
         if (count($errors_register) == 0) {
         $password = md5($password_1);//encrypt the password before saving in the database
 
-        $query = "INSERT INTO users (username, email, password) 
-                    VALUES('$username', '$email', '$password')";
+        $query = "INSERT INTO public.users (user_id, username, password, email, user_create_date) 
+                    VALUES(NEXTVAL('users_s1'), '$username', '$password', '$email', '$user_create_date')";
         mysqli_query($db, $query);
         $_SESSION['username'] = $username;
         $_SESSION['success'] = "Congrats, now you're logged in.";
