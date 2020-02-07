@@ -27,11 +27,11 @@
 
         // form validation: ensure that the form is correctly filled ...
         // by adding (array_push()) corresponding error unto $errors array
-        if (empty($username)) { array_push($errors_register, "Escolha um usuário"); }
-        if (empty($email)) { array_push($errors_register, "Preencha o e-mail"); }
-        if (empty($password_1)) { array_push($errors_register, "Defina sua senha"); }
+        if (empty($username)) { array_push($errors_register, "Define a username"); }
+        if (empty($email)) { array_push($errors_register, "Inform your email"); }
+        if (empty($password_1)) { array_push($errors_register, "Define your password"); }
         if ($password_1 != $password_2) {
-        array_push($errors_register, "As duas senhas não correspondem");
+        array_push($errors_register, "Passwords do not match");
         }
 
         // first check the database to make sure 
@@ -42,11 +42,11 @@
 
         if ($user) { // if user exists
         if ($user['username'] === $username) {
-            array_push($errors_register, "Usuário já existente");
+            array_push($errors_register, "User already registered");
         }
 
         if ($user['email'] === $email) {
-            array_push($errors_register, "Esse e-mail já foi usado");
+            array_push($errors_register, "This email is already in use");
         }
         }
 
@@ -54,11 +54,11 @@
         if (count($errors_register) == 0) {
         $password = md5($password_1);//encrypt the password before saving in the database
 
-        $query = "INSERT INTO users (username, email, password, user_create_date) 
-                    VALUES('$username', '$email', '$password', '$user_create_date')";
+        $query = "INSERT INTO users (username, email, password) 
+                    VALUES('$username', '$email', '$password')";
         mysqli_query($db, $query);
         $_SESSION['username'] = $username;
-        $_SESSION['success'] = "Parabéns, agora você está logado.";
+        $_SESSION['success'] = "Congrats, now you're logged in.";
         header('location: index.php');
         }
     }
