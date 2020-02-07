@@ -35,7 +35,12 @@ h2 {
 /* HEADER */
 header {
     font-size: 1.2em;    
-    background: #0D64AB;    
+    background: #01B6D1;
+	background: -webkit-linear-gradient(to left, #4580FF, #2155C4);
+	background: linear-gradient(to left, #4580FF, #2155C4);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0; 
 }
 
 header nav {
@@ -52,7 +57,7 @@ header nav ul {
 }
 
 #top-header {
-    background-color: #114D9A;
+    background-color: rgba(17, 76, 154, 0.4);
     height: 36px;
     
 }
@@ -118,7 +123,12 @@ header nav svg {
 /* FOOTER */
 
 footer {
-    background: #0D64AB;
+    background: #01B6D1;
+	background: -webkit-linear-gradient(to left, #4580FF, #2155C4);
+	background: linear-gradient(to left, #4580FF, #2155C4);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
     color: #fff;    
     min-height: 10vh;
     line-height: 10vh;
