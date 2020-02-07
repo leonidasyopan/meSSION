@@ -10,7 +10,7 @@
     $errors_reset = array();    
 
     // connect to the database
-    require "connection/connect.php"; 
+    require "connect.php"; 
 
     // REGISTER USER
     if (isset($_POST['reg_user'])) {
