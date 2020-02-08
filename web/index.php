@@ -20,6 +20,21 @@ session_start();
     <main>
         <section  class="content-width">
 
+        <section class="welcome-message">
+            <h2>What about finding a Missionary from your past?</h2>
+
+            <p>Have you been loking for a missionary who served with you or in your area, but you can't quite remember his/her name or any other useful information?</p>
+
+            <p>Fear no more! <span class="mession-in-paragraph">meSSION</span> will help you find "your" missionary based on the area and/or time he served his mission.</p>
+
+            <p><em>Give the search box a try!</em></p>
+
+        </section>
+
+        <figure class="top-banner">
+            <img src="img/missionary-montage.png" alt="Missionaries">
+        </figure>
+
         <div class="search-box">            
 
             <form method="post" action="index.php">
@@ -73,7 +88,7 @@ session_start();
                         echo '</div>';
                     }
 
-                }
+                } 
             ?>
         </div>
 

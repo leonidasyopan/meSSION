@@ -18,18 +18,28 @@ body {
     font: 400 15px 'Montserrat', serif, sans-serif;
 }
 
-h1 {    
+h1, h2, h3, h4, h5, h6 {    
     font-family: 'Montserrat', serif, sans-serif;
     font-weight: bold;
+    margin: 10px 0;
 }
 
-h2 {
-    font-family: 'Raleway', sans-serif;      
+p {
+    font-family: 'Raleway', sans-serif;     
+    margin: 10px 0;     
+    line-height: 1.5em;
+    font-size: 1.2em;
 }
 
 .content-width {
     max-width: 960px;
     margin: 0 auto;
+}
+
+.mession-in-paragraph {
+    font-weight: bold;
+    color: #326AE0;
+    font-style: italic;
 }
 
 /* HEADER */
@@ -92,6 +102,7 @@ header nav ul {
     font-family: Helvetica, sans-serif;
     font-size: 1.5em;
     color: rgb(255, 255, 255);
+    margin: 0;
 }
 
 #logo span {    
@@ -135,6 +146,10 @@ footer {
     text-align: center;
 }
 
+footer p {    
+    line-height: 9vh;
+}
+
 footer a {
     text-decoration: none;
     color: #fff;
@@ -158,8 +173,22 @@ main section {
 
 /* SEARCH BOX */
 
+.top-banner {
+    width: 100%;
+    height: auto;
+}
+
+.top-banner img {
+    width: 100%;
+    height: auto;
+}
+
+.welcome-message {
+
+}
+
 .search-box {
-    margin: 20px 0;
+    margin: 20px auto;
 }
 
 .search-box form {
@@ -167,7 +196,7 @@ main section {
     width: 90%;    
     display: flex;
     flex-direction: column;
-    margin: 0 10px;
+    margin: 0 auto;
 }
 
 .search-box form input[type="text"] {
@@ -192,7 +221,7 @@ main section {
     margin-bottom: 20px;
     height: 50px;    
     border-radius: 4px;
-    background-color: #2D9CF7;
+    background-color: #326AE0;
     color: #fff;
     font-size: 1.2em;    
 }
@@ -212,6 +241,11 @@ main section {
 
 .missionary-information-div span {
     font-weight: bold;
+}
+
+.missionary-information-div p {
+    font-size: 1em;
+    line-height: 1.2em;
 }
 
 /*  
