@@ -14,18 +14,18 @@
 }
 
 body {
-    background-color: #fff;    
+    background-color: #fff;   
     font: 400 15px 'Montserrat', serif, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {    
-    font-family: 'Montserrat', serif, sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-weight: bold;
     margin: 10px 0;
 }
 
 p {
-    font-family: 'Raleway', sans-serif;     
+    font-family: 'Montserrat', serif, sans-serif;     
     margin: 10px 0;     
     line-height: 1.5em;
     font-size: 1.2em;
@@ -102,7 +102,8 @@ header nav ul {
     font-family: Helvetica, sans-serif;
     font-size: 1.5em;
     color: rgb(255, 255, 255);
-    margin: 0;
+    margin: 0;    
+    line-height: 2.5em;
 }
 
 #logo span {    
@@ -146,8 +147,9 @@ footer {
     text-align: center;
 }
 
-footer p {    
-    line-height: 9vh;
+footer p {
+    font-size: 1em;
+    padding-top: 30px;
 }
 
 footer a {
@@ -163,12 +165,11 @@ footer a:hover {
 
 main {
     background-color: #ffffff;
-    min-height: 80vh;  
-    
+    min-height: 80vh;      
 }
 
 main section {
-    padding: 30px 10px;
+    padding: 10px 10px;
 }
 
 /* SEARCH BOX */
@@ -226,6 +227,12 @@ main section {
     font-size: 1.2em;    
 }
 
+.search-box form input[type="submit"]:hover {
+    background-color: rgba(50, 105, 224, 0.95); 
+    cursor: pointer;   
+    transition: all 200ms;
+}
+
 .missionary-information-div:nth-of-type(1) {
     margin-top: 50px;
 }
@@ -248,13 +255,85 @@ main section {
     line-height: 1.2em;
 }
 
+
+/****************
+* Add info page *
+*****************/
+
+.add-info-form {
+    color: rgb(70, 70, 70);
+    margin-bottom: 50px;
+}
+
+.add-info-form input {
+        background-color: rgb(245, 247, 252);
+        border: none;
+        padding: 12px 15px;
+        margin: 5px 0;
+        width: 100%;   
+        border-radius: 5px;
+}
+
+.add-info-form label {
+    display: inline-block;
+    padding-left: 5px;
+    margin-top: 5px;
+}
+
+.add-info-form button {
+    margin: 10px 0;
+    padding: 15px 30px;
+    height: 50px;    
+    border-radius: 4px;
+    background-color: #326AE0;
+    color: #fff;
+    font-size: 1.2em;    
+    float: right;    
+}
+
+.add-info-form button:hover {
+    background-color: rgba(50, 105, 224, 0.95); 
+    cursor: pointer;   
+    transition: all 200ms;
+}
+
+.add-info-form .form-help-paragraph {
+    font-size: smaller;
+    font-style: italic;
+    margin-top: -5px;
+}
+
+.add-info-form form {
+    margin: 30px auto;
+}
+
+.add-info-form fieldset {
+    margin: 20px 0;
+    border: 1px solid rgb(170, 170, 170);
+    padding: 0 20px 20px 20px;
+    border-radius: 10px;
+}
+
+.add-info-form legend {
+    padding: 20px;
+} 
+
+
+
+
 /*  
 // MEDIUM SCREENS - MEDIA QUERY BREAK
 */
 @media (min-width:600px) {
 
+    main section {
+        padding: 30px 10px;
+    }
+    
+
     #logo {
-        font-size: 3em
+        font-size: 3em;
+        line-height: 1.3em;
     }
 
     #main-navigation ul{
@@ -282,6 +361,10 @@ main section {
     
     .search-box form input[type="submit"] {
         width: 15%;  
+    }
+
+    footer p {
+        padding-top: 40px;
     }
 
 }

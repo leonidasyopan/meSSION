@@ -9,70 +9,67 @@
     
     <!-- This is the style for the login page -->
     <link rel="stylesheet" href="css/login-style.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
-<div class="container" id="container">
-	<div class="form-container sign-up-container">
-		<form action="login.php" method="POST" id="register-form">
-            <h1>Criar conta</h1>
-            <!-- 
-			<div class="social-container">
-				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+    <header>
+        <?php include $_SERVER['DOCUMENT_ROOT'] . '/common/header.php'; ?> 
+    </header>
+    <main>
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form action="login.php" method="POST" id="register-form">
+                    <h1>Register</h1>
+
+                    <span>Use your email to register.</span>
+
+                    <?php include $_SERVER['DOCUMENT_ROOT'] . '/errors/errors_register.php'; ?>
+
+                    <fieldset>
+                        <input type="text" name="username" id="username" placeholder="Username" value="<?php echo $username; ?>">
+                        <input type="email" name="email" id="email" placeholder="Email" value="<?php echo $email; ?>">
+                        <input type="password" name="password1" id="password1" placeholder="Password">
+                        <input type="password" name="password2" id="password2" placeholder="Repeat Password">
+                        <button type="submit" class="btn" name="reg_user">Register</button>
+                    </fieldset>
+                </form>
             </div>
-            -->
-            <span>Use seu e-mail para se cadastrar</span>
+            <div class="form-container sign-in-container">
+                <form action="login.php" method="POST" id="login-form">
+                    <h1>Login</h1>
+                    
+                    <span>Type your username and pasword to login.</span>
+                    
+                    <?php include $_SERVER['DOCUMENT_ROOT'] . '/errors/errors_login.php'; ?>
 
-            <?php include $_SERVER['DOCUMENT_ROOT'] . '/errors/errors_register.php'; ?>
-
-            <fieldset>
-                <input type="text" name="username" id="username" placeholder="Usuário" value="<?php echo $username; ?>">
-                <input type="email" name="email" id="email" placeholder="E-mail" value="<?php echo $email; ?>">
-                <input type="password" name="password1" id="password1" placeholder="Senha">
-                <input type="password" name="password2" id="password2" placeholder="Repetir Senha">
-                <button type="submit" class="btn" name="reg_user">Cadastre-se</button>
-            </fieldset>
-		</form>
-	</div>
-	<div class="form-container sign-in-container">
-		<form action="login.php" method="POST" id="login-form">
-            <h1>Login</h1>
-            <!-- 
-			<div class="social-container">
-				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    <fieldset>
+                        <input type="text" name="username" id="username" placeholder="Username" />
+                        <input type="password" name="password" id="password" placeholder="Password" />
+                        <a href="enter_email.php">Forgot your password?</a>
+                        <button type="submit" class="btn" name="login_user">Login</button>
+                    </fieldset>
+                </form>
             </div>
-            -->
-            <span>Use sua conta para fazer login</span>
-            
-            <?php include $_SERVER['DOCUMENT_ROOT'] . '/errors/errors_login.php'; ?>
-
-            <fieldset>
-                <input type="text" name="username" id="username" placeholder="Usuário" />
-                <input type="password" name="password" id="password" placeholder="Senha" />
-                <a href="enter_email.php">Esqueceu sua senha?</a>
-                <button type="submit" class="btn" name="login_user">Login</button>
-            </fieldset>
-		</form>
-	</div>
-	<div class="overlay-container">
-		<div class="overlay">
-			<div class="overlay-panel overlay-left">
-				<h1>Bem-vindo(a)!</h1>
-				<p>Se você já tem uma conta, clique aqui para fazer seu login.</p>
-				<button class="ghost" id="signIn">Login</button>
-			</div>
-			<div class="overlay-panel overlay-right">
-				<h1>Olá, irmão(ã)!</h1>
-				<p>Se você ainda não tem uma conta, clique aqui para fazer seu cadastro.</p>
-				<button class="ghost" id="signUp">Cadastre-se</button>
-			</div>
-		</div>
-	</div>
-</div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome!</h1>
+                        <p>If you already have an account, click here to login.</p>
+                        <button class="ghost" id="signIn">Login</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Hello, brother or sister!</h1>
+                        <p>If you still don't have an account, click here to register.</p>
+                        <button class="ghost" id="signUp">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <?php include $_SERVER['DOCUMENT_ROOT'] . '/common/footer.php'; ?> 
+    </footer>
     
     <!-- JavaScript app para transitar entre o painel de login e o de cadastro -->
     <script src="js/login-register-switch.js"></script>
