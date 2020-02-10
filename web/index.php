@@ -103,8 +103,6 @@ session_start();
         <?php include $_SERVER['DOCUMENT_ROOT'] . '/common/footer.php'; ?> 
     </footer>
 
-    <script src=""></script>    
-
     <!-- Importing FontAwesome icons -->
     <script src="https://kit.fontawesome.com/d92ab94eeb.js"></script>
 
