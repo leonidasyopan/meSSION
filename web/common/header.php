@@ -8,7 +8,7 @@
     </nav>
     <nav id="main-navigation">
         <div class="content-width" id="logo-ul-holder"> <!-- This DIV has only style purposes -->
-            <p id="logo"><a href="index.php"><span>me</span>SSION<a href="index.php"></p>
+            <p id="logo"><a href="index.php"><span>me</span>SSION</a></p>
 
             <ul>
                 <li><a href="add-info.php">Add Info <i class="fas fa-address-book"></i></a></li>
