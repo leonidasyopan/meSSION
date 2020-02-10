@@ -57,7 +57,7 @@ session_start();
                         <input type="text" name="unitName" id="unitName" placeholder="What was the name of the ward or branch?">
 
                         <label for="unitNumber">Unit Number (official Church number): </label>
-                        <input type="text" name="stakeName" id="stakeName" placeholder="Do you happen to know the unit's official number?">
+                        <input type="text" name="unitNumber" id="unitNumber" placeholder="Do you happen to know the unit's official number?">
                         <p class="form-help-paragraph"> *Leave it blank if you don't know it.</p>
 
                         <label for="stakeName">Stake Name: </label>
