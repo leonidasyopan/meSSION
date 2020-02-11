@@ -20,6 +20,8 @@ session_start();
     <main>
         <section  class="content-width">
 
+            <a href="add-unit-only.php" id="add-unit-button">Add Unit Only</a>
+
             <section class="add-info-form">
 
                 <h2>Add Missionary Information</h2>
@@ -63,6 +65,12 @@ session_start();
                         <label for="stakeName">Stake Name: </label>
                         <input type="text" name="stakeName" id="stakeName" placeholder="What was the name of the stake?">
 
+                        <label for="stakeCity">Stake City: </label>
+                        <input type="text" name="stakeCity" id="stakeCity" placeholder="What city did the unit/stake belong to?">
+
+                        <label for="stakeState">Stake State: </label>
+                        <input type="text" name="stakeState" id="stakeState" placeholder="What state did the unit/stake belong to?">
+
                         <label for="stakeCountry">Stake Country: </label>
                         <input type="text" name="stakeCountry" id="stakeCountry" placeholder="What country did the unit/stake belong to?">
 
@@ -79,6 +87,66 @@ session_start();
                 </form>
             </section>
         
+            <?php
+                if (isset($_POST)) {                
+
+                    // echo '<p>post is set!</p>';
+
+                    //  Missionary Data
+                    $missionLocal = htmlspecialchars($_POST[missionLocal]);
+                    // echo '<p>Book: ' . $book . '</p>';
+                    $missionaryTitle = htmlspecialchars($_POST[missionaryTitle]);
+                    //echo '<p>Chapter: ' . $chapter . '</p>';
+                    $missionStart = htmlspecialchars($_POST[missionStart]);
+                    //echo '<p>Verse: ' . $verse . '</p>';
+                    $missionEnd = htmlspecialchars($_POST[missionEnd]);
+                    //echo '<p>Content: ' . $content . '</p>';   
+                    
+                    // Unit Data
+                    $companionName = htmlspecialchars($_POST[companionName]);
+                    $unitName = htmlspecialchars($_POST[unitName]);
+                    $unitNumber = htmlspecialchars($_POST[unitNumber]);
+                    $stakeName = htmlspecialchars($_POST[stakeName]);
+                    $stakeCity = htmlspecialchars($_POST[stakeCity]);
+                    $stakeState = htmlspecialchars($_POST[stakeState]);
+                    $stakeCountry = htmlspecialchars($_POST[stakeCountry]);
+                    $transferStart = htmlspecialchars($_POST[transferStart]);
+                    $transferEnd = htmlspecialchars($_POST[transferEnd]);
+
+                    //echo '<pre>'; print_r($_POST['topics']); echo '</pre>';                    
+                    
+                    $stmt = $db->prepare("INSERT INTO public.missionary_service (missionary_title, mission_local, mission_start, mission_end) VALUES (:missionary_title, :mission_local, :mission_start, :mission_end);");
+                    $stmt->bindValue(':missionary_title', $missionaryTitle, PDO::PARAM_STR);
+                    $stmt->bindValue(':mission_local', $missionLocal, PDO::PARAM_STR);
+                    $stmt->bindValue(':mission_start', $missionStart, PDO::PARAM_STR);
+                    $stmt->bindValue(':mission_end', $missionEnd, PDO::PARAM_STR);
+                    
+                    $stmt->execute();
+
+                    $stmt = $db->prepare("INSERT INTO public.unit (unit_number, unit_name, stake_name, city, state, country) VALUES (:unit_number, :unit_name, :stake_name, :city, :state, :country);");
+                    $stmt->bindValue(':unit_number', $unitNumber, PDO::PARAM_INT);
+                    $stmt->bindValue(':unit_name', $unitName, PDO::PARAM_STR);
+                    $stmt->bindValue(':stake_name', $stakeName, PDO::PARAM_STR);
+                    $stmt->bindValue(':city', $stakeCity, PDO::PARAM_STR);
+                    $stmt->bindValue(':state', $stakeState, PDO::PARAM_STR);
+                    $stmt->bindValue(':country', $stakeCountry, PDO::PARAM_STR);
+                    
+                    $stmt->execute();
+
+
+                    $userId = $db->lastInsertId("users_user_id_seq");
+                    $unitId = $db->lastInsertId("unit_unit_id_seq"); 
+
+                    $stmt = $db->prepare("INSERT INTO public.missionary_timeline (user_id, unit_id, companion_name, transfer_start, transfer_end) VALUES (:user_id, :unit_id, :companion_name, :transfer_start, :transfer_end);");
+                    $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+                    $stmt->bindValue(':unit_id', $unitId, PDO::PARAM_INT);
+                    $stmt->bindValue(':companion_name', $companionName, PDO::PARAM_STR);
+                    $stmt->bindValue(':transfer_start', $transferStart, PDO::PARAM_STR);
+                    $stmt->bindValue(':transfer_end', $transferEnd, PDO::PARAM_STR);
+                    
+                    $stmt->execute();
+
+                }
 
         </section>
     </main>

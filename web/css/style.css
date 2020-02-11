@@ -264,18 +264,27 @@ main section {
     margin-top: 5px;
 }
 
-.add-info-form button {
+.add-info-form button, #add-unit-button {
+    text-decoration: none;
     margin: 10px 0;
     padding: 15px 30px;
     height: 50px;    
     border-radius: 4px;
     background-color: #326AE0;
     color: #fff;
-    font-size: 1.2em;    
-    float: right;    
+    font-size: 1.2em;   
 }
 
-.add-info-form button:hover {
+.add-info-form button {
+    float: right;   
+}
+
+#add-unit-button {
+    display: inline-block;
+    margin: 20px 0 10px 0;    
+}
+
+.add-info-form button:hover, #add-unit-button:hover {
     background-color: rgba(50, 105, 224, 0.95); 
     cursor: pointer;   
     transition: all 200ms;
@@ -351,11 +360,19 @@ main section {
         padding-top: 40px;
     }
 
+    #add-unit-button {
+        position: relative;
+        left: 70%;
+    }
+
 }
 
 /*  
 // BIG SCREENS - MEDIA QUERY BREAK
 */
 @media (min-width:1025px) {     
+    #add-unit-button {
+        left: 80%;
+    }
 
 }
