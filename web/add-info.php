@@ -147,6 +147,7 @@ session_start();
                     $stmt->execute();
 
                 }
+            ?>
 
         </section>
     </main>
