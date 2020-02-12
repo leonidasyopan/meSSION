@@ -14,11 +14,11 @@
 
     // REGISTER USER
     if (isset($_POST['reg_user'])) {
-    // receive all input values from the form
-        $username = mysqli_real_escape_string($db, $_POST['username']);
-        $email = mysqli_real_escape_string($db, $_POST['email']);
-        $password_1 = mysqli_real_escape_string($db, $_POST['password1']);
-        $password_2 = mysqli_real_escape_string($db, $_POST['password2']);
+        // receive all input values from the form
+        $username = htmlspecialchars($_POST['username']);
+        $email = htmlspecialchars($_POST['email']);
+        $password_1 = htmlspecialchars($_POST['password1']);
+        $password_2 = htmlspecialchars($_POST['password2']);
 
         // DEFINE O FUSO HORARIO COMO O HORARIO DE BRASILIA
         date_default_timezone_set('America/Sao_Paulo');
@@ -65,8 +65,8 @@
 
     // LOGIN USER
     if (isset($_POST['login_user'])) {
-        $username = mysqli_real_escape_string($db, $_POST['username']);
-        $password = mysqli_real_escape_string($db, $_POST['password']);
+        $username = htmlspecialchars($_POST['username']);
+        $password = htmlspecialchars($_POST['password']);
 
         if (empty($username)) {
             array_push($errors_login, "Digite seu usuário");
