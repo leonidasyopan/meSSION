@@ -82,13 +82,13 @@ session_start();
 
                     </fieldset>
 
-                    <input type="submit" class="btn" name="submit_data">
+                    <input type="submit" class="submit-button" name="submit_data">
 
                 </form>
             </section>
         
             <?php
-                if (isset($_POST)) { 
+                if (!empty($_POST)) { 
 
                     echo '<p>post is set</p>';
 
@@ -127,7 +127,6 @@ session_start();
                     $stmt->bindValue(':mission_local', $missionLocal, PDO::PARAM_STR);
                     $stmt->bindValue(':mission_start', $missionStart, PDO::PARAM_STR);
                     $stmt->bindValue(':mission_end', $missionEnd, PDO::PARAM_STR);
-                    
                     $stmt->execute();
 
 
@@ -140,7 +139,6 @@ session_start();
                     $stmt->bindValue(':city', $stakeCity, PDO::PARAM_STR);
                     $stmt->bindValue(':state', $stakeState, PDO::PARAM_STR);
                     $stmt->bindValue(':country', $stakeCountry, PDO::PARAM_STR);
-                    
                     $stmt->execute();
 
                     echo '<p>Insert unit done</p>';
@@ -154,9 +152,7 @@ session_start();
                     $stmt->bindValue(':unit_id', $unitId, PDO::PARAM_INT);
                     $stmt->bindValue(':companion_name', $companionName, PDO::PARAM_STR);
                     $stmt->bindValue(':transfer_start', $transferStart, PDO::PARAM_STR);
-                    $stmt->bindValue(':transfer_end', $transferEnd, PDO::PARAM_STR);
-                    
-                    $stmt->execute();
+                    $stmt->bindValue(':transfer_end', $transferEnd, PDO::PARAM_STR);$stmt->execute();
 
                     echo '<p>Insert missionary timeline done</p>';
 
