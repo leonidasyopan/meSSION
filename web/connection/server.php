@@ -1,5 +1,5 @@
 <?php
-    session_start();
+/*    session_start();
 
     // initializing variables
     $username = "";
@@ -93,6 +93,7 @@
     Accept email of user whose password is to be reset
     Send email to user to reset their password
     */
+    /*
     if (isset($_POST['reset-password'])) {
         $email = mysqli_real_escape_string($db, $_POST['email']);
         // ensure that the user exists on our system
