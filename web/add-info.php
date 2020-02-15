@@ -20,7 +20,16 @@ session_start();
     <main>
         <section  class="content-width">
 
-            <a href="add-unit-only.php" id="add-unit-button">Add Unit Only</a>
+            <ul>
+                <li><a href="add-unit.php" id="add-unit-button">Add Unit</a></li>
+                <li><a href="add-m-service.php" id="add-m-service-button">Add Missionary Service</a></li>
+                <li><a href="add-m-timeline.php" id="add-m-timline-button">Add Missionary timeline</a></li>
+            </ul>
+
+            
+            
+            
+            
 
             <section class="add-info-form">
 
