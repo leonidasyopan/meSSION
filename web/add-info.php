@@ -122,7 +122,7 @@ session_start();
                     $transferEnd = htmlspecialchars($_POST['transferEnd']);
                     echo '<p>' . $transferEnd . '</p>';
                     
-                    $stmt = $db->prepare("INSERT INTO public.missionary_service (user_id, missionary_title, mission_local, mission_start, mission_end) VALUES (CURRVAL('users_s1'), :missionary_title, :mission_local, :mission_start, :mission_end);");
+                    $stmt = $db->prepare("INSERT INTO missionary_service (user_id, missionary_title, mission_local, mission_start, mission_end) VALUES (CURRVAL('users_s1'), :missionary_title, :mission_local, :mission_start, :mission_end);");
                     $stmt->bindValue(':missionary_title', $missionaryTitle, PDO::PARAM_STR);
                     $stmt->bindValue(':mission_local', $missionLocal, PDO::PARAM_STR);
                     $stmt->bindValue(':mission_start', $missionStart, PDO::PARAM_STR);
@@ -132,7 +132,7 @@ session_start();
 
                     echo '<p>Insert missionary service done</p>';
 
-                    $stmt = $db->prepare("INSERT INTO public.unit (unit_id, unit_number, unit_name, stake_name, city, state, country) VALUES (NEXTVAL('unit_s1'), :unit_number, :unit_name, :stake_name, :city, :state, :country);");
+                    $stmt = $db->prepare("INSERT INTO unit (unit_id, unit_number, unit_name, stake_name, city, state, country) VALUES (NEXTVAL('unit_s1'), :unit_number, :unit_name, :stake_name, :city, :state, :country);");
                     $stmt->bindValue(':unit_number', $unitNumber, PDO::PARAM_INT);
                     $stmt->bindValue(':unit_name', $unitName, PDO::PARAM_STR);
                     $stmt->bindValue(':stake_name', $stakeName, PDO::PARAM_STR);
