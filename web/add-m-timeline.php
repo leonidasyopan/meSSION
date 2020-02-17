@@ -36,21 +36,14 @@ session_start();
                         <label for="unitName">Unit Name: </label>
                         <input type="text" name="unitName" id="unitName" placeholder="What was the name of the ward or branch?">
 
-                        <label for="unitNumber">Unit Number (official Church number): </label>
-                        <input type="text" name="unitNumber" id="unitNumber" placeholder="Do you happen to know the unit's official number?">
-                        <p class="form-help-paragraph"> *Leave it blank if you don't know it.</p>
+                        <label for="companionName">Companion Name: </label>
+                        <input type="text" name="companionName" id="companionName" placeholder="Who was your companion during this transfer?">
 
-                        <label for="stakeName">Stake Name: </label>
-                        <input type="text" name="stakeName" id="stakeName" placeholder="What was the name of the stake?">
+                        <label for="transferStart">Transfer Started: </label>
+                        <input type="text" name="transferStart" id="transferStart" placeholder="When did the transfer start?">
 
-                        <label for="stakeCity">Stake City: </label>
-                        <input type="text" name="stakeCity" id="stakeCity" placeholder="What city did the unit/stake belong to?">
-
-                        <label for="stakeState">Stake State: </label>
-                        <input type="text" name="stakeState" id="stakeState" placeholder="What state did the unit/stake belong to?">
-
-                        <label for="stakeCountry">Stake Country: </label>
-                        <input type="text" name="stakeCountry" id="stakeCountry" placeholder="What country did the unit/stake belong to?">                      
+                        <label for="transferEnd">Transfer Ended: </label>
+                        <input type="text" name="transferEnd" id="transferEnd" placeholder="What country did the unit/stake belong to?">                      
 
                     </fieldset>
 
