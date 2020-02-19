@@ -26,7 +26,7 @@ session_start();
 
                 <p>Please colaborate with us by adding your own missionary information.</p>
 
-                <form action="add-unit-only.php" method="post" id="add-unit-form">                    
+                <form action="add-m-timeline.php" method="post" id="add-m-timeline-form">                    
 
                     <fieldset>
 
@@ -40,10 +40,10 @@ session_start();
                         <input type="text" name="companionName" id="companionName" placeholder="Who was your companion during this transfer?">
 
                         <label for="transferStart">Transfer Started: </label>
-                        <input type="text" name="transferStart" id="transferStart" placeholder="When did the transfer start?">
+                        <input type="date" name="transferStart" id="transferStart" placeholder="When did the transfer start?">
 
                         <label for="transferEnd">Transfer Ended: </label>
-                        <input type="text" name="transferEnd" id="transferEnd" placeholder="What country did the unit/stake belong to?">                      
+                        <input type="date" name="transferEnd" id="transferEnd" placeholder="What country did the unit/stake belong to?">                      
 
                     </fieldset>
 
@@ -58,30 +58,22 @@ session_start();
 
                     echo '<p>post is set</p>';                    
                     
-                    // Unit Data                    
-                    $unitName = htmlspecialchars($_POST['unitName']);
-                    echo '<p>' . $unitName . '</p>';
-                    $unitNumber = htmlspecialchars($_POST['unitNumber']);
-                    echo '<p>' . $unitNumber . '</p>';
-                    $stakeName = htmlspecialchars($_POST['stakeName']);
-                    echo '<p>' . $stakeName . '</p>';
-                    $stakeCity = htmlspecialchars($_POST['stakeCity']);
-                    echo '<p>' . $stakeCity . '</p>';
-                    $stakeState = htmlspecialchars($_POST['stakeState']);
-                    echo '<p>' . $stakeState . '</p>';
-                    $stakeCountry = htmlspecialchars($_POST['stakeCountry']);
-                    echo '<p>' . $stakeCountry . '</p>';
+                    // Timeline Data
+                    // $unitName = htmlspecialchars($_POST['unitName']);
+                    // echo '<p>' . $unitName . '</p>';
+                    $companionName = htmlspecialchars($_POST['companionName']);
+                    echo '<p>' . $companionName . '</p>';                    
+                    $transferStart = htmlspecialchars($_POST['transferStart']);
+                    echo '<p>' . $transferStart . '</p>';
+                    $transferEnd = htmlspecialchars($_POST['transferEnd']);
+                    echo '<p>' . $transferEnd . '</p>';
 
-                    $stmt = $db->prepare("INSERT INTO public.unit (unit_id, unit_number, unit_name, stake_name, city, state, country) VALUES (NEXTVAL('unit_s1'), :unit_number, :unit_name, :stake_name, :city, :state, :country);");
-                    $stmt->bindValue(':unit_number', $unitNumber, PDO::PARAM_INT);
-                    $stmt->bindValue(':unit_name', $unitName, PDO::PARAM_STR);
-                    $stmt->bindValue(':stake_name', $stakeName, PDO::PARAM_STR);
-                    $stmt->bindValue(':city', $stakeCity, PDO::PARAM_STR);
-                    $stmt->bindValue(':state', $stakeState, PDO::PARAM_STR);
-                    $stmt->bindValue(':country', $stakeCountry, PDO::PARAM_STR);
-                    $stmt->execute();
+                    $stmt = $db->prepare("INSERT INTO missionary_timeline (users_id, unit_id, companion_name, transfer_start, transfer_end) VALUES (CURRVAL('users_users_id_seq'), CURRVAL('unit_unit_id_seq'), :companion_name, :transfer_start, :transfer_end);");
+                    $stmt->bindValue(':companion_name', $companionName, PDO::PARAM_STR);
+                    $stmt->bindValue(':transfer_start', $transferStart, PDO::PARAM_STR);
+                    $stmt->bindValue(':transfer_end', $transferEnd, PDO::PARAM_STR);$stmt->execute();
 
-                    echo '<p>Insert unit done</p>';
+                    echo '<p>Insert missionary timeline done</p>';
 
                 }
             ?>
