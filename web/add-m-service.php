@@ -22,9 +22,9 @@ session_start();
 
             <section class="add-info-form">
 
-                <h2>Add Missionary Information</h2>
+                <h2>Add Missionary Service</h2>
 
-                <p>Please colaborate with us by adding your own missionary information.</p>
+                <p></p>
 
                 <form action="add-m-service.php" method="post" id="add-m-service-form">                    
 

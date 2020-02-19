@@ -9,7 +9,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add Unit Only | meSSION</title>
+    <title>Add Missionary Timeline | meSSION</title>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -22,15 +22,15 @@ session_start();
 
             <section class="add-info-form">
 
-                <h2>Add Missionary Information</h2>
+                <h2>Add Missionary Timeline</h2>
 
-                <p>Please colaborate with us by adding your own missionary information.</p>
+                <p></p>
 
                 <form action="add-m-timeline.php" method="post" id="add-m-timeline-form">                    
 
                     <fieldset>
 
-                        <legend>Add Unit (Ward or Branch)</legend>
+                        <legend>Add Transfer Information</legend>
 
                         
                         <label for="unitName">Unit Name: </label>
@@ -40,10 +40,10 @@ session_start();
                         <input type="text" name="companionName" id="companionName" placeholder="Who was your companion during this transfer?">
 
                         <label for="transferStart">Transfer Started: </label>
-                        <input type="date" name="transferStart" id="transferStart" placeholder="When did the transfer start?">
+                        <input type="date" name="transferStart" id="transferStart">
 
                         <label for="transferEnd">Transfer Ended: </label>
-                        <input type="date" name="transferEnd" id="transferEnd" placeholder="What country did the unit/stake belong to?">                      
+                        <input type="date" name="transferEnd" id="transferEnd">                      
 
                     </fieldset>
 
@@ -71,7 +71,8 @@ session_start();
                     $stmt = $db->prepare("INSERT INTO missionary_timeline (user_id, unit_id, companion_name, transfer_start, transfer_end) VALUES (CURRVAL('user_access_user_id_seq'), CURRVAL('unit_unit_id_seq'), :companion_name, :transfer_start, :transfer_end);");
                     $stmt->bindValue(':companion_name', $companionName, PDO::PARAM_STR);
                     $stmt->bindValue(':transfer_start', $transferStart, PDO::PARAM_STR);
-                    $stmt->bindValue(':transfer_end', $transferEnd, PDO::PARAM_STR);$stmt->execute();
+                    $stmt->bindValue(':transfer_end', $transferEnd, PDO::PARAM_STR);
+                    $stmt->execute();
 
                     echo '<p>Insert missionary timeline done</p>';
 
