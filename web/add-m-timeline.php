@@ -68,7 +68,7 @@ session_start();
                     $transferEnd = htmlspecialchars($_POST['transferEnd']);
                     echo '<p>' . $transferEnd . '</p>';
 
-                    $stmt = $db->prepare("INSERT INTO missionary_timeline (users_id, unit_id, companion_name, transfer_start, transfer_end) VALUES (CURRVAL('users_users_id_seq'), CURRVAL('unit_unit_id_seq'), :companion_name, :transfer_start, :transfer_end);");
+                    $stmt = $db->prepare("INSERT INTO missionary_timeline (user_id, unit_id, companion_name, transfer_start, transfer_end) VALUES (CURRVAL('user_access_user_id_seq'), CURRVAL('unit_unit_id_seq'), :companion_name, :transfer_start, :transfer_end);");
                     $stmt->bindValue(':companion_name', $companionName, PDO::PARAM_STR);
                     $stmt->bindValue(':transfer_start', $transferStart, PDO::PARAM_STR);
                     $stmt->bindValue(':transfer_end', $transferEnd, PDO::PARAM_STR);$stmt->execute();

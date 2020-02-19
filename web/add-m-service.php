@@ -67,7 +67,7 @@ session_start();
                     $missionEnd = htmlspecialchars($_POST['missionEnd']);
                     echo '<p>' . $missionEnd . '</p>';
 
-                    $stmt = $db->prepare("INSERT INTO public.missionary_service (users_id, missionary_title, mission_local, mission_start, mission_end) VALUES (CURRVAL('users_users_id_seq'), :missionary_title, :mission_local, :mission_start, :mission_end);");
+                    $stmt = $db->prepare("INSERT INTO missionary_service (user_id, missionary_title, mission_local, mission_start, mission_end) VALUES (CURRVAL('user_access_user_id_seq'), :missionary_title, :mission_local, :mission_start, :mission_end);");
                     $stmt->bindValue(':missionary_title', $missionaryTitle, PDO::PARAM_STR);
                     $stmt->bindValue(':mission_local', $missionLocal, PDO::PARAM_STR);
                     $stmt->bindValue(':mission_start', $missionStart, PDO::PARAM_STR);
