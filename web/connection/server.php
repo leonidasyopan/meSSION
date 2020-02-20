@@ -114,32 +114,40 @@ session_start();
     Accept email of user whose password is to be reset
     Send email to user to reset their password
     */
-    /*
+    
     if (isset($_POST['reset-password'])) {
-        $email = mysqli_real_escape_string($db, $_POST['email']);
+        $email = htmlspecialchars($_POST['email']);
+
         // ensure that the user exists on our system
-        $query = "SELECT email FROM users WHERE email='$email'";
-        $results = mysqli_query($db, $query);
+        $queryEmail = "SELECT email FROM user_access WHERE email=:email";
+        $statement = $db->prepare($queryEmail);
+        $statement->bindValue(':email', $email);
+
+        $results = $statement->execute();
 
         if (empty($email)) {
-            array_push($errors_email, "Digite seu e-mail completo");
-        }else if(mysqli_num_rows($results) <= 0) {
-            array_push($errors_email, "Infelizmente não encontramos um usuário com esse e-mail. Cadastre-se!");
-        }
+            array_push($errors_email, "Type your email");
+        } 
+        /*else if($results->rowCount() <= 0) {
+            array_push($errors_email, "Unfortunately, we haven't found this email in our website.");
+        } */
         // generate a unique random token of length 100
         $token = bin2hex(random_bytes(50));
 
         if (count($errors_email) == 0) {
             // store token in the password-reset database table against the user's email
-            $sql = "INSERT INTO password_resets(email, token) VALUES ('$email', '$token')";
-            $results = mysqli_query($db, $sql);
+            $sql = "INSERT INTO password_resets(email, token) VALUES (:email, :token)";
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+            $stmt->bindValue(':token', $token, PDO::PARAM_STR);            
+            $results = $stmt->execute();
 
             // Send email to user with the token in a link they can click on
             $to = $email;
-            $subject = "Resete sua senha no Wardnary.com";
-            $msg = 'Olá, para recuperar sua senha, basta clicar nesse link: <a href="http://wardnary.leonidasyopan.com/new_pass.php?token=' . $token . '">Recuperar senha</a>.';
+            $subject = "Reset your passward at meSSION.";
+            $msg = 'Just click the follwoing link to recover your password: <a href="https://mession.herokuapp.com/new_pass.php?token=' . $token . '">Recover password.</a>.';
             $msg = wordwrap($msg,70);
-            $headers = "From: contato@leonidasyopan.com";
+            $headers = "From: leonidasyopan@gmail.com";
             mail($to, $subject, $msg, $headers);
             header('location: pending.php?email=' . $email);
         }
@@ -147,17 +155,17 @@ session_start();
 
     // ENTER A NEW PASSWORD
     if (isset($_POST['new-password'])) {
-        $new_pass = mysqli_real_escape_string($db, $_POST['new_password1']);
-        $new_pass_c = mysqli_real_escape_string($db, $_POST['new_password2']);
+        $new_pass = htmlspecialchars($_POST['new_password1']);
+        $new_pass_c = htmlspecialchars($_POST['new_password2']);
 
         // Grab to token that came from the email link
         $token = $_SESSION['token'];
         if (empty($new_pass) || empty($new_pass_c)) {
-            array_push($errors_reset, "Digite sua nova senha.");
+            array_push($errors_reset, "Type your password.");
         }
 
         if ($new_pass !== $new_pass_c) {
-            array_push($errors_reset, "As duas senhas não correspondem.");
+            array_push($errors_reset, "Passwords do not match.");
         }
 
         if (count($errors_reset) == 0) {
@@ -176,5 +184,5 @@ session_start();
             }
         }
     }
-*/
+
 ?>
