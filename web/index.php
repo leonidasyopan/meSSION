@@ -1,7 +1,12 @@
 <?php 
-// Start the session
-session_start();
-    require "connection/connect.php"; 
+    // Start the session
+    session_start();
+        require "connection/connect.php"; 
+
+    if (isset($_SESSION['username']))
+    {
+        $username = $_SESSION['username'];
+    }    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,6 +40,10 @@ session_start();
                 <img src="img/missionary-montage.png" alt="Missionaries">
             </figure>
 
+            <?php
+                if (isset($_SESSION['username'])) {
+
+            ?>
             <div class="search-box">            
 
                 <form method="post" action="index.php">
@@ -49,7 +58,9 @@ session_start();
                     <input type="submit" name="submit" value="Find">
                 </form>
             </div>
-
+            <?php
+                }
+            ?>
             <div class="search-result">
                 <?php
                     if(isset($_POST['submit'])) {

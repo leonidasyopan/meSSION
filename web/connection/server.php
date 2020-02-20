@@ -1,5 +1,5 @@
 <?php
-/*    session_start();
+session_start();
 
     // initializing variables
     $username = "";
@@ -12,54 +12,61 @@
     // connect to the database
     require ($_SERVER['DOCUMENT_ROOT'] . "/connection/connect.php"); 
 
+
     // REGISTER USER
     if (isset($_POST['reg_user'])) {
         // receive all input values from the form
         $username = htmlspecialchars($_POST['username']);
         $email = htmlspecialchars($_POST['email']);
         $password_1 = htmlspecialchars($_POST['password1']);
-        $password_2 = htmlspecialchars($_POST['password2']);
-
-        // DEFINE O FUSO HORARIO COMO O HORARIO DE BRASILIA
-        date_default_timezone_set('America/Sao_Paulo');
-
-        $user_create_date = strftime("%B %d, %Y"); // date the user was created
+        $password_2 = htmlspecialchars($_POST['password2']);      
 
         // form validation: ensure that the form is correctly filled ...
         // by adding (array_push()) corresponding error unto $errors array
-        if (empty($username)) { array_push($errors_register, "Define a username"); }
-        if (empty($email)) { array_push($errors_register, "Inform your email"); }
-        if (empty($password_1)) { array_push($errors_register, "Define your password"); }
+        if (empty($username)) { 
+            array_push($errors_register, "Define a username"); 
+        }
+        if (empty($email)) { 
+            array_push($errors_register, "Inform your email"); 
+        }
+        if (empty($password_1)) { 
+            array_push($errors_register, "Define your password"); 
+        }
         if ($password_1 != $password_2) {
-        array_push($errors_register, "Passwords do not match");
+            array_push($errors_register, "Passwords do not match");
         }
 
         // first check the database to make sure 
         // a user does not already exist with the same username and/or email
-        $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email' LIMIT 1";
-        $result = mysqli_query($db, $user_check_query);
-        $user = mysqli_fetch_assoc($result);
-
-        if ($user) { // if user exists
-        if ($user['username'] === $username) {
+        $user_check_query = $db->query("SELECT * FROM user_access WHERE username='$username' OR email='$email' LIMIT 1");
+        if($user_check_query->rowCount() >= 1){
             array_push($errors_register, "User already registered");
         }
 
         if ($user['email'] === $email) {
             array_push($errors_register, "This email is already in use");
-        }
-        }
+        }    
 
         // Finally, register user if there are no errors in the form
         if (count($errors_register) == 0) {
-        $password = md5($password_1);//encrypt the password before saving in the database
+            // Get the hashed password.
+            $hashedPassword = password_hash($password_1, PASSWORD_DEFAULT);
 
-        $query = "INSERT INTO public.users (user_id, username, password, email, user_create_date) 
-                    VALUES(NEXTVAL('users_s1'), '$username', '$password', '$email', '$user_create_date')";
-        mysqli_query($db, $query);
-        $_SESSION['username'] = $username;
-        $_SESSION['success'] = "Congrats, now you're logged in.";
-        header('location: index.php');
+            $query = 'INSERT INTO user_access(username, password, email, user_create_date) VALUES(:username, :password, :email, current_timestamp)';
+            $statement = $db->prepare($query);
+            $statement->bindValue(':username', $username);
+            
+            // **********************************************
+            // NOTICE: We are submitting the hashed password!
+            // **********************************************
+            $statement->bindValue(':password', $hashedPassword);
+            $statement->bindValue(':email', $email);            
+            $statement->execute();
+
+
+            $_SESSION['username'] = $username;
+            $_SESSION['success'] = "Congrats, now you're logged in.";
+            header('location: index.php');
         }
     }
 
