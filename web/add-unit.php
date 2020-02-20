@@ -79,7 +79,7 @@ session_start();
                     $stakeCountry = htmlspecialchars($_POST['stakeCountry']);
                     echo '<p>' . $stakeCountry . '</p>';
 
-                    $stmt = $db->prepare("INSERT INTO public.unit (unit_id, unit_number, unit_name, stake_name, city, state, country) VALUES (NEXTVAL('unit_unit_id_seq'), :unit_number, :unit_name, :stake_name, :city, :state, :country);");
+                    $stmt = $db->prepare("INSERT INTO unit (unit_id, unit_number, unit_name, stake_name, city, state, country) VALUES (NEXTVAL('unit_unit_id_seq'), :unit_number, :unit_name, :stake_name, :city, :state, :country);");
                     $stmt->bindValue(':unit_number', $unitNumber, PDO::PARAM_INT);
                     $stmt->bindValue(':unit_name', $unitName, PDO::PARAM_STR);
                     $stmt->bindValue(':stake_name', $stakeName, PDO::PARAM_STR);
