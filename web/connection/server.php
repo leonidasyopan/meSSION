@@ -67,6 +67,7 @@ session_start();
             $_SESSION['username'] = $username;
             $_SESSION['success'] = "Congrats, now you're logged in.";
             header('location: index.php');
+            die(); // we always include a die after redirects.
         }
     }
 
@@ -76,24 +77,37 @@ session_start();
         $password = htmlspecialchars($_POST['password']);
 
         if (empty($username)) {
-            array_push($errors_login, "Digite seu usuário");
+            array_push($errors_login, "Type your username");
         }
         if (empty($password)) {
-            array_push($errors_login, "Digite sua senha");
+            array_push($errors_login, "Type your password");
         }
 
-        if (count($errors_login) == 0) {
-            $password = md5($password);
-            $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-            $results = mysqli_query($db, $query);
-            if (mysqli_num_rows($results) == 1) {
+        $queryPass = 'SELECT password FROM user_access WHERE username=:username';
+        
+        $statement = $db->prepare($queryPass);
+        $statement->bindValue(':username', $username);
+
+        $result = $statement->execute();
+
+        if ($result) {
+            $row = $statement->fetch();
+            $hashedPasswordFromDB = $row['password'];
+
+            // now check to see if the hashed password matches
+            if (password_verify($password, $hashedPasswordFromDB))
+            {
+                // password was correct, put the user on the session, and redirect to home
                 $_SESSION['username'] = $username;
                 $_SESSION['success'] = "Você está conectado";
                 header('location: index.php');
-            }else {
-                array_push($errors_login, "Seu usuário e/ou senha estão incorretos");
+                die(); // we always include a die after redirects.
+            } else {
+                array_push($errors_login, "User and/or password are incorrect. Try again!");
             }
+
         }
+
     }
 
     /*
@@ -162,5 +176,5 @@ session_start();
             }
         }
     }
-
+*/
 ?>
