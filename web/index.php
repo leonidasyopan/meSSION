@@ -72,19 +72,19 @@
                         }
 
                         foreach ($db->query("SELECT
-                        us.first_name || ' ' || us.last_name AS full_name,
-                        ms.missionary_title AS missionary_name,
-                        ms.mission_local,
-                        mt.companion_name AS companion,
-                        un.unit_name AS ward_or_branch,
-                        un.stake_name AS stake,
-                        mt.transfer_start,
-                        mt.transfer_end
-                    FROM
-                        public.users us
-                    INNER JOIN public.missionary_timeline mt ON us.user_id = mt.user_id
-                    INNER JOIN public.unit un ON un.unit_id = mt.unit_id
-                    INNER JOIN public.missionary_service ms ON us.user_id = ms.user_id
+                            up.first_name || ' ' || up.last_name AS full_name,
+                            ms.missionary_title AS missionary_name,
+                            ms.mission_local,
+                            mt.companion_name AS companion,
+                            un.unit_name AS ward_or_branch,
+                            un.stake_name AS stake,
+                            mt.transfer_start,
+                            mt.transfer_end
+                        FROM
+                            user_profile up
+                        INNER JOIN missionary_timeline mt ON up.user_id = mt.user_id
+                        INNER JOIN unit un ON un.unit_id = mt.unit_id
+                        INNER JOIN missionary_service ms ON up.user_id = ms.user_id
                         WHERE $typeOfQuery LIKE '%$query%'") as $row) {
                             echo '<div class="missionary-information-div">';
                             echo '<h3>' . $row['ward_or_branch'] . '</h3>';
