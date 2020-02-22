@@ -64,19 +64,13 @@ else
         
             <?php
                 
-                if(!empty($_POST)) { 
-
-                    echo '<p>post is set</p>';                    
+                if(!empty($_POST)) {               
                     
                     //  Missionary Data
                     $missionLocal = htmlspecialchars($_POST['missionLocal']);
-                    echo '<p>' . $missionLocal . '</p>';
                     $missionaryTitle = htmlspecialchars($_POST['missionaryTitle']);
-                    echo '<p>' . $missionaryTitle . '</p>';
                     $missionStart = htmlspecialchars($_POST['missionStart']);
-                    echo '<p>' . $missionStart . '</p>';
                     $missionEnd = htmlspecialchars($_POST['missionEnd']);
-                    echo '<p>' . $missionEnd . '</p>';
 
                     $stmt = $db->prepare("INSERT INTO missionary_service (user_id, missionary_title, mission_local, mission_start, mission_end) VALUES (CURRVAL('user_access_user_id_seq'), :missionary_title, :mission_local, :mission_start, :mission_end);");
                     $stmt->bindValue(':missionary_title', $missionaryTitle, PDO::PARAM_STR);
