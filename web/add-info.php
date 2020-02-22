@@ -33,11 +33,6 @@ else
 
             <a href="add-unit.php" id="add-unit-button">Add Unit</a>
 
-            
-            
-            
-            
-
             <section class="add-info-form">
 
                 <h2>Add Missionary Information</h2>
@@ -165,7 +160,6 @@ else
                     $stmt->bindValue(':transfer_end', $transferEnd, PDO::PARAM_STR);$stmt->execute();
 
                     echo '<p>Insert missionary timeline done</p>';
-
 
                 }
             ?>

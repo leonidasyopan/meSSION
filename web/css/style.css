@@ -42,6 +42,10 @@ p {
     font-style: italic;
 }
 
+.red-message {
+    color: rgb(255, 45, 45);
+}
+
 /* HEADER */
 header {
     font-size: 1.2em;    

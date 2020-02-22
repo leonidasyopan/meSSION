@@ -72,23 +72,15 @@ else
         
             <?php
                 
-                if(!empty($_POST)) { 
-
-                    echo '<p>post is set</p>';                    
+                if(!empty($_POST)) {                 
                     
                     // Unit Data                    
                     $unitName = htmlspecialchars($_POST['unitName']);
-                    echo '<p>' . $unitName . '</p>';
                     $unitNumber = htmlspecialchars($_POST['unitNumber']);
-                    echo '<p>' . $unitNumber . '</p>';
                     $stakeName = htmlspecialchars($_POST['stakeName']);
-                    echo '<p>' . $stakeName . '</p>';
                     $stakeCity = htmlspecialchars($_POST['stakeCity']);
-                    echo '<p>' . $stakeCity . '</p>';
                     $stakeState = htmlspecialchars($_POST['stakeState']);
-                    echo '<p>' . $stakeState . '</p>';
                     $stakeCountry = htmlspecialchars($_POST['stakeCountry']);
-                    echo '<p>' . $stakeCountry . '</p>';
 
                     $stmt = $db->prepare("INSERT INTO unit (unit_id, unit_number, unit_name, stake_name, city, state, country) VALUES (NEXTVAL('unit_unit_id_seq'), :unit_number, :unit_name, :stake_name, :city, :state, :country);");
                     $stmt->bindValue(':unit_number', $unitNumber, PDO::PARAM_INT);
@@ -99,7 +91,7 @@ else
                     $stmt->bindValue(':country', $stakeCountry, PDO::PARAM_STR);
                     $stmt->execute();
 
-                    echo '<p>Insert unit done</p>';
+                    echo '<p class="red-message">' . $unitName  . ' Added successfully. We really appreciate your contribution.</p>';
 
                 }
             ?>
